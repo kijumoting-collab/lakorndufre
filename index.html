@@ -35,24 +35,15 @@ hs.src = ('//s10.histats.com/js15_as.js');
             padding: 20px 10px;
         }
 
-        /* Layout Utama dengan Sidebar Kanan-Kiri */
+        /* Layout Utama - Fokus Single Column Mobile Friendly */
         .page-layout {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Konten Utama (Video & Deskripsi) */
-        .main-content {
-            flex: 1;
-            max-width: 850px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
             gap: 15px;
         }
 
@@ -247,13 +238,14 @@ hs.src = ('//s10.histats.com/js15_as.js');
         }
 
         /* ==========================================
-           CSS UNTUK MEMANGGIL ADS (IFRAME SYSTEM)
+           CSS UNTUK MEMANGGIL ADS (RESPONSIVE IFRAME)
            ========================================== */
         .ad-container-iframe {
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            width: 100%;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 8px;
         }
@@ -263,95 +255,84 @@ hs.src = ('//s10.histats.com/js15_as.js');
             background: transparent;
         }
 
-        /* Penataan Ukuran Khusus Per Slot */
-        .ad-top-box { width: 100%; height: 60px; }
-        .ad-bottom-box { width: 100%; height: 260px; }
+        /* Slot 1: Diatas Player (Memanggil pos-a / 320x50) */
+        .ad-top-box { height: 60px; }
 
-        /* Sidebar Kiri & Kanan (Hanya Muncul di Desktop Layar Lebar) */
-        .ad-sidebar {
-            position: sticky;
-            top: 20px;
-            display: none;
-            width: 170px;
-            height: 610px;
+        /* Slot 2: Di dalam Container, Di bawah Player sebelum text (Memanggil pos-b / 300x250) */
+        .ad-middle-box { 
+            height: 260px; 
+            border-radius: 0px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        @media (min-width: 1200px) {
-            .ad-sidebar { display: flex; }
-        }
+        /* Slot 3: Di paling bawah halaman, responsive mobile (Memanggil pos-c / 160x300) */
+        .ad-bottom-box { height: 310px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="page-layout">
         
-        <div class="ad-container-iframe ad-sidebar">
-            <iframe src="ads.html#pos-c" class="ad-iframe" width="165" height="605" scrolling="no"></iframe>
+        <div class="ad-container-iframe ad-top-box">
+            <iframe src="ads.html#pos-a" class="ad-iframe" width="650" height="55" scrolling="no"></iframe>
         </div>
-        
-        <div class="main-content">
+
+        <div class="container">
             
-            <div class="ad-container-iframe ad-top-box">
-                <iframe src="ads.html#pos-a" class="ad-iframe" width="650" height="55" scrolling="no"></iframe>
-            </div>
-
-            <div class="container">
-                <div class="video-player" id="playerContainer">
-                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop" alt="Video Placeholder" class="video-thumbnail" id="thumbnail">
-                    
-                    <div class="player-overlay" id="playerOverlay">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-
-                    <div class="buffering-box" id="bufferingBox">
-                        <div class="spinner"></div>
-                        <div class="buffering-text">กำลังโหลดวิดีโอ... <span id="percentage">0%</span></div>
-                    </div>
-
-                    <div class="video-controls">
-                        <div class="controls-left">
-                            <i class="fas fa-play"></i>
-                            <i class="fas fa-step-forward"></i>
-                            <i class="fas fa-volume-up"></i>
-                            <span class="time-display">00:00 / 45:00</span>
-                        </div>
-                        <div class="controls-right">
-                            <i class="fas fa-closed-captioning"></i>
-                            <i class="fas fa-cog"></i>
-                            <i class="fas fa-expand"></i>
-                        </div>
+            <div class="video-player" id="playerContainer">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop" alt="Video Placeholder" class="video-thumbnail" id="thumbnail">
+                
+                <div class="player-overlay" id="playerOverlay">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
 
-                <div class="video-details">
-                    <div class="badge-container">
-                        <span class="badge hot">กำลังมาแรง</span>
-                        <span class="badge hd">Ultra HD 1080P</span>
+                <div class="buffering-box" id="bufferingBox">
+                    <div class="spinner"></div>
+                    <div class="buffering-text">กำลังโหลดวิดีโอ... <span id="percentage">0%</span></div>
+                </div>
+
+                <div class="video-controls">
+                    <div class="controls-left">
+                        <i class="fas fa-play"></i>
+                        <i class="fas fa-step-forward"></i>
+                        <i class="fas fa-volume-up"></i>
+                        <span class="time-display">00:00 / 45:00</span>
                     </div>
-                    <h1 class="video-title">ละครย้อนหลัง ซีรี่ย์ยอดฮิต และหนังดังเอเชีย - (ตอนล่าสุด)</h1>
-                    <div class="video-meta">
-                        <span><i class="fas fa-star rating-star"></i> 9.9 คะแนนสูงสุด</span>
-                        <span>•</span>
-                        <span>2026</span>
-                        <span>•</span>
-                        <span>มีคำบรรยายหลายภาษา</span>
+                    <div class="controls-right">
+                        <i class="fas fa-closed-captioning"></i>
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-expand"></i>
                     </div>
-                    <p class="video-description">
-                        รับชมละครไทยยอดฮิตและซีรี่ย์เรื่องดังที่เป็นกระแส ไม่ว่าจะเป็นแนวย้อนยุค แฟนตาซี โรแมนติก หรือดราม่าทันสมัย สตรีมมิ่งผ่านเซิร์ฟเวอร์ความเร็วสูงพร้อมซับไตเติลแปลทันที คลิกที่เครื่องเล่นวิดีโอเพื่อเริ่มต้นความบันเทิงและปลดล็อกการรับชมได้ทันที
-                    </p>
                 </div>
             </div>
 
-            <div class="ad-container-iframe ad-bottom-box">
+            <div class="ad-container-iframe ad-middle-box">
                 <iframe src="ads.html#pos-b" class="ad-iframe" width="610" height="255" scrolling="no"></iframe>
             </div>
 
+            <div class="video-details">
+                <div class="badge-container">
+                    <span class="badge hot">กำลังมาแรง</span>
+                    <span class="badge hd">Ultra HD 1080P</span>
+                </div>
+                <h1 class="video-title">ละครย้อนหลัง ซีรี่ย์ยอดฮิต และหนังดังเอเชีย - (ตอนล่าสุด)</h1>
+                <div class="video-meta">
+                    <span><i class="fas fa-star rating-star"></i> 9.9 คะแนนสูงสุด</span>
+                    <span>•</span>
+                    <span>2026</span>
+                    <span>•</span>
+                    <span>มีคำบรรยายหลายภาษา</span>
+                </div>
+                <p class="video-description">
+                    รับชมละครไทยยอดฮิตและซีรี่ย์เรื่องดังที่เป็นกระแส ไม่ว่าจะเป็นแนวย้อนยุค แฟนตาซี โรแมนติก หรือดราม่าทันสมัย สตรีมมิ่งผ่านเซิร์ฟเวอร์ความเร็วสูงพร้อมซับไตเติลแปลทันที คลิกที่เครื่องเล่นวิดีโอเพื่อเริ่มต้นความบันเทิงและปลดล็อกการรับชมได้ทันที
+                </p>
+            </div>
         </div>
 
-        <div class="ad-container-iframe ad-sidebar">
-            <iframe src="ads.html#pos-c" class="ad-iframe" width="165" height="605" scrolling="no"></iframe>
+        <div class="ad-container-iframe ad-bottom-box">
+            <iframe src="ads.html#pos-c" class="ad-iframe" width="330" height="305" scrolling="no"></iframe>
         </div>
 
     </div>
