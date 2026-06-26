@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5011173,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5011173&101" alt="cool hit counter" border="0"></a></noscript>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ละครย้อนหลัง หนัง ซีรี่ย์ ซิทคอม</title>
+    <meta name="description" content="ละครย้อนหลัง ชมละครย้อนหลัง ละครดัง ละครใหม่ ละครเก่า ละครไทย ครบทุกแนว ทั้งดราม่า โรแมนติก คอมเมดี้ และบู๊แอ็กชัน อัปเดตทุกวัน ที่นี่ที่เดียว">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0c0e12;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        /* Layout Utama dengan Sidebar Kanan-Kiri */
+        .page-layout {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Konten Utama (Video & Deskripsi) */
+        .main-content {
+            flex: 1;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .container {
+            width: 100%;
+            background: #15171e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        /* Video Player Wrapper */
+        .video-player {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Universal Placeholder Thumbnail */
+        .video-thumbnail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.8);
+        }
+
+        /* Premium Overlay & Glowing Play Button */
+        .player-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn {
+            font-size: 45px;
+            color: #00ff88;
+            background: rgba(20, 24, 33, 0.95);
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 6px;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .video-player:hover .play-btn {
+            transform: scale(1.1);
+            box-shadow: 0 0 35px rgba(0, 255, 136, 0.7);
+            color: #ffffff;
+            background: #00ff88;
+        }
+
+        /* Real-time Buffering Box */
+        .buffering-box {
+            position: absolute;
+            z-index: 3;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(11, 13, 18, 0.85);
+            padding: 25px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spinner {
+            width: 55px;
+            height: 55px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: #00ff88;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .buffering-text {
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Fake Cinematic UI Video Controls */
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .controls-left, .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .video-controls i {
+            font-size: 16px;
+            cursor: pointer;
+            color: #b3b3b3;
+            transition: color 0.2s ease;
+        }
+
+        .video-controls i:hover {
+            color: #00ff88;
+        }
+
+        .time-display {
+            font-size: 13px;
+            color: #a0a5b5;
+            font-family: monospace;
+        }
+
+        /* Universal Meta Info */
+        .video-details {
+            padding: 25px;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.hot { background: #ff4757; }
+        .badge.hd { background: #2f3542; border: 1px solid #57606f; }
+
+        .video-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .video-meta {
+            font-size: 14px;
+            color: #747d8c;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rating-star {
+            color: #ffa502;
+        }
+
+        .video-description {
+            font-size: 14px;
+            color: #a4b0be;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           CSS UNTUK MEMANGGIL ADS (IFRAME SYSTEM)
+           ========================================== */
+        .ad-container-iframe {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+        .ad-iframe {
+            border: none;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        /* Penataan Ukuran Khusus Per Slot */
+        .ad-top-box { width: 100%; height: 60px; }
+        .ad-bottom-box { width: 100%; height: 260px; }
+
+        /* Sidebar Kiri & Kanan (Hanya Muncul di Desktop Layar Lebar) */
+        .ad-sidebar {
+            position: sticky;
+            top: 20px;
+            display: none;
+            width: 170px;
+            height: 610px;
+        }
+
+        @media (min-width: 1200px) {
+            .ad-sidebar { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-layout">
+        
+        <div class="ad-container-iframe ad-sidebar">
+            <iframe src="ads.html#pos-c" class="ad-iframe" width="165" height="605" scrolling="no"></iframe>
+        </div>
+        
+        <div class="main-content">
+            
+            <div class="ad-container-iframe ad-top-box">
+                <iframe src="ads.html#pos-a" class="ad-iframe" width="650" height="55" scrolling="no"></iframe>
+            </div>
+
+            <div class="container">
+                <div class="video-player" id="playerContainer">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop" alt="Video Placeholder" class="video-thumbnail" id="thumbnail">
+                    
+                    <div class="player-overlay" id="playerOverlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+
+                    <div class="buffering-box" id="bufferingBox">
+                        <div class="spinner"></div>
+                        <div class="buffering-text">กำลังโหลดวิดีโอ... <span id="percentage">0%</span></div>
+                    </div>
+
+                    <div class="video-controls">
+                        <div class="controls-left">
+                            <i class="fas fa-play"></i>
+                            <i class="fas fa-step-forward"></i>
+                            <i class="fas fa-volume-up"></i>
+                            <span class="time-display">00:00 / 45:00</span>
+                        </div>
+                        <div class="controls-right">
+                            <i class="fas fa-closed-captioning"></i>
+                            <i class="fas fa-cog"></i>
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-details">
+                    <div class="badge-container">
+                        <span class="badge hot">กำลังมาแรง</span>
+                        <span class="badge hd">Ultra HD 1080P</span>
+                    </div>
+                    <h1 class="video-title">ละครย้อนหลัง ซีรี่ย์ยอดฮิต และหนังดังเอเชีย - (ตอนล่าสุด)</h1>
+                    <div class="video-meta">
+                        <span><i class="fas fa-star rating-star"></i> 9.9 คะแนนสูงสุด</span>
+                        <span>•</span>
+                        <span>2026</span>
+                        <span>•</span>
+                        <span>มีคำบรรยายหลายภาษา</span>
+                    </div>
+                    <p class="video-description">
+                        รับชมละครไทยยอดฮิตและซีรี่ย์เรื่องดังที่เป็นกระแส ไม่ว่าจะเป็นแนวย้อนยุค แฟนตาซี โรแมนติก หรือดราม่าทันสมัย สตรีมมิ่งผ่านเซิร์ฟเวอร์ความเร็วสูงพร้อมซับไตเติลแปลทันที คลิกที่เครื่องเล่นวิดีโอเพื่อเริ่มต้นความบันเทิงและปลดล็อกการรับชมได้ทันที
+                    </p>
+                </div>
+            </div>
+
+            <div class="ad-container-iframe ad-bottom-box">
+                <iframe src="ads.html#pos-b" class="ad-iframe" width="610" height="255" scrolling="no"></iframe>
+            </div>
+
+        </div>
+
+        <div class="ad-container-iframe ad-sidebar">
+            <iframe src="ads.html#pos-c" class="ad-iframe" width="165" height="605" scrolling="no"></iframe>
+        </div>
+
+    </div>
+
+    <script>
+        // CONFIGURATION TARGET REDIRECT URL
+        const TARGET_URL = "https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2"; 
+        const BUFFERING_DURATION = 4000; 
+
+        const playerContainer = document.getElementById('playerContainer');
+        const playerOverlay = document.getElementById('playerOverlay');
+        const bufferingBox = document.getElementById('bufferingBox');
+        const percentageText = document.getElementById('percentage');
+
+        playerContainer.addEventListener('click', function() {
+            playerOverlay.style.display = 'none';
+            bufferingBox.style.display = 'flex';
+
+            let currentProgress = 0;
+            const stepIncrementTime = BUFFERING_DURATION / 100;
+
+            const progressTimer = setInterval(() => {
+                currentProgress++;
+                percentageText.innerText = currentProgress + "%";
+                
+                if (currentProgress >= 100) {
+                    clearInterval(progressTimer);
+                    window.location.href = TARGET_URL;
+                }
+            }, stepIncrementTime);
+        });
+    </script>
+</body>
+</html>
