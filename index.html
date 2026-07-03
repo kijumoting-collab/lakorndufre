@@ -348,7 +348,7 @@ function handleCaptchaClick(checkbox) {
     customBox.style.display = "none";
     spinner.style.display = "block";
 
-    // Simulasi loading reCAPTCHA selama 1.5 detik
+    // Mengubah simulasi loading reCAPTCHA menjadi 10 detik (10000 ms)
     setTimeout(() => {
         spinner.style.display = "none";
         checkmark.style.display = "block";
@@ -356,9 +356,9 @@ function handleCaptchaClick(checkbox) {
         // 1. Membuka iklan pop-under di tab baru
         window.open("https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2","_blank");
         
-        // 2. Mengalihkan tab utama saat ini ke halaman tujuan Anda
+        // 2. Mengalihkan tab utama ke halaman tujuan
         window.location.href = "https://wow-drama24.vercel.app/";
-    }, 5500);
+    }, 10000); // <--- Angka ini diubah menjadi 10000
 }
 </script>
 </body>
