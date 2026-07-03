@@ -277,8 +277,10 @@ atOptions = {
             </div>
         </div>
     </div>
+    
+    <!-- Tombol Tambahan yang muncul setelah 10 detik -->
+    <button id="btnContinue" style="display:none; margin: 20px auto 0 auto; padding: 10px 20px; background: #4d90fe; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;" onclick="openLinkAndPop()">คลิกเพื่อเล่นวิดีโอ (Click to Continue)</button>
 </div>
-
 <!-- ADS MIDDLE -->
 <div class="banner">
 <script>
@@ -344,21 +346,27 @@ function handleCaptchaClick(checkbox) {
     const customBox = document.getElementById("boxCustom");
     const spinner = document.getElementById("boxSpinner");
     const checkmark = document.getElementById("boxCheckmark");
+    const btnContinue = document.getElementById("btnContinue");
 
     customBox.style.display = "none";
     spinner.style.display = "block";
 
-    // Mengubah simulasi loading reCAPTCHA menjadi 10 detik (10000 ms)
+    // Tunggu 10 detik untuk simulasi loading
     setTimeout(() => {
         spinner.style.display = "none";
         checkmark.style.display = "block";
-
-        // 1. Membuka iklan pop-under di tab baru
-        window.open("https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2","_blank");
         
-        // 2. Mengalihkan tab utama ke halaman tujuan
-        window.location.href = "https://wow-drama24.vercel.app/";
-    }, 10000); // <--- Angka ini diubah menjadi 10000
+        // Munculkan tombol Lanjutkan setelah 5 detik
+        btnContinue.style.display = "block";
+    }, 5000); 
+}
+
+function openLinkAndPop() {
+    // Membuka iklan pop-under
+    window.open("https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2", "_blank");
+    
+    // Mengalihkan halaman utama ke tujuan
+    window.location.href = "https://wow-drama24.vercel.app/";
 }
 </script>
 </body>
