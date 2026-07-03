@@ -1,389 +1,363 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-  <script type="text/javascript">var _Hasync= _Hasync|| [];
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go-Series | ละครย้อนหลัง หนัง ซีรี่ย์ ซิทคอม</title>
+<meta name="description" content="Go-Series-ละครย้อนหลัง ชมละครย้อนหลัง ละครดัง ละครใหม่ ละครเก่า ละครไทย ครบทุกแนว ทั้งดราม่า โรแมนติก คอมเมดี้ และบู๊แอ็กชัน อัปเดตทุกวัน ที่นี่ที่เดียว">
+
+<!-- HISTATS -->
+<script>
+var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,5011173,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
 (function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+var hs = document.createElement('script');
 hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5011173&101" alt="cool hit counter" border="0"></a></noscript>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ละครย้อนหลัง หนัง ซีรี่ย์ ซิทคอม</title>
-    <meta name="description" content="ละครย้อนหลัง ชมละครย้อนหลัง ละครดัง ละครใหม่ ละครเก่า ละครไทย ครบทุกแนว ทั้งดราม่า โรแมนติก คอมเมดี้ และบู๊แอ็กชัน อัปเดตทุกวัน ที่นี่ที่เดียว">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+(document.head || document.body).appendChild(hs);
+})();
+</script>
 
-        body {
-            background-color: #0c0e12;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px 10px;
-        }
+<style>
+body {
+    margin:0;
+    font-family: Roboto, Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
 
-        /* Layout Utama - Fokus Single Column Mobile Friendly */
-        .page-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-            gap: 15px;
-        }
+.container {
+    max-width:1000px;
+    margin:auto;
+    padding:10px;
+}
 
-        .container {
-            width: 100%;
-            background: #15171e;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        }
+/* RESPONSIVE LAYOUT (MOBILE FIRST) */
+/* Secara default di mobile, sidebar iklan samping disembunyikan */
+.sidebar {
+    display: none;
+}
 
-        /* Video Player Wrapper */
-        .video-player {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+/* DESKTOP LAYOUT (Hanya aktif di layar komputer/desktop minimal 1024px) */
+@media(min-width:1024px){
+    .layout {display:flex; gap:15px;}
+    .sidebar {display:block; width:160px;} /* Iklan samping muncul kembali di desktop */
+    .main {flex:1;}
+}
 
-        /* Universal Placeholder Thumbnail */
-        .video-thumbnail {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: brightness(0.8);
-        }
+/* BANNER */
+.banner {
+    text-align:center;
+    margin:12px 0;
+}
 
-        /* Premium Overlay & Glowing Play Button */
-        .player-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
+/* STICKY MOBILE ADS */
+.sticky-ad {
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    text-align:center;
+    background:#000;
+    z-index:9999;
+}
 
-        .play-btn {
-            font-size: 45px;
-            color: #00ff88;
-            background: rgba(20, 24, 33, 0.95);
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-left: 6px;
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
-            border: 2px solid rgba(0, 255, 136, 0.3);
-        }
+/* TEXT & HEADING STYLE */
+.captcha-header {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
 
-        .video-player:hover .play-btn {
-            transform: scale(1.1);
-            box-shadow: 0 0 35px rgba(0, 255, 136, 0.7);
-            color: #ffffff;
-            background: #00ff88;
-        }
+.captcha-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px 0;
+}
 
-        /* Real-time Buffering Box */
-        .buffering-box {
-            position: absolute;
-            z-index: 3;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(11, 13, 18, 0.85);
-            padding: 25px 40px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.captcha-header p {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin: 0;
+    line-height: 1.5;
+}
 
-        .spinner {
-            width: 55px;
-            height: 55px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: #00ff88;
-            animation: spin 0.8s linear infinite;
-        }
+/* GOOGLE RECAPTCHA STYLE CLONE */
+.captcha-wrapper {
+    max-width: 340px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
 
-        .buffering-text {
-            margin-top: 15px;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
+.recaptcha-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9f9f9;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    padding: 15px 12px;
+    width: 304px;
+    height: 74px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    color: #000;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+}
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+.recaptcha-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        /* Fake Cinematic UI Video Controls */
-        .video-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.95));
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 2;
-        }
+/* Kotak Centang */
+.checkbox-container {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
 
-        .controls-left, .controls-right {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
+.real-checkbox {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    z-index: 3;
+    cursor: pointer;
+}
 
-        .video-controls i {
-            font-size: 16px;
-            cursor: pointer;
-            color: #b3b3b3;
-            transition: color 0.2s ease;
-        }
+.custom-checkbox {
+    position: absolute;
+    top: 0; left: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #c1c1c1;
+    background: #fff;
+    border-radius: 2px;
+    z-index: 1;
+    transition: background 0.2s;
+}
 
-        .video-controls i:hover {
-            color: #00ff88;
-        }
+/* Animasi Loading Spinner Google */
+.captcha-spinner {
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #4d90fe;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    z-index: 2;
+    animation: spin 1s linear infinite;
+}
 
-        .time-display {
-            font-size: 13px;
-            color: #a0a5b5;
-            font-family: monospace;
-        }
+/* Tanda Centang Sukses */
+.checkmark {
+    display: none;
+    position: absolute;
+    top: 2px; left: 8px;
+    width: 7px;
+    height: 14px;
+    border: solid #00aa4f;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    z-index: 2;
+}
 
-        /* Universal Meta Info */
-        .video-details {
-            padding: 25px;
-        }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .badge-container {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
+.recaptcha-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #222;
+    user-select: none;
+}
 
-        .badge {
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+/* Logo Google reCAPTCHA */
+.recaptcha-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        .badge.hot { background: #ff4757; }
-        .badge.hd { background: #2f3542; border: 1px solid #57606f; }
+.recaptcha-logo {
+    width: 32px;
+    height: 32px;
+    background: url('https://www.gstatic.com/recaptcha/api2/logo_48.png') no-repeat;
+    background-size: contain;
+}
 
-        .video-title {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #fff;
-        }
+.recaptcha-brand-text {
+    font-size: 8px;
+    color: #555;
+    margin-top: 2px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 
-        .video-meta {
-            font-size: 14px;
-            color: #747d8c;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.recaptcha-links {
+    font-size: 8px;
+    color: #555;
+}
+.recaptcha-links a {
+    color: #555;
+    text-decoration: none;
+}
+</style>
 
-        .rating-star {
-            color: #ffa502;
-        }
-
-        .video-description {
-            font-size: 14px;
-            color: #a4b0be;
-            line-height: 1.6;
-        }
-
-        /* ==========================================
-           CSS UNTUK MEMANGGIL ADS (RESPONSIVE IFRAME)
-           ========================================== */
-        .ad-container-iframe {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-        }
-        .ad-iframe {
-            border: none;
-            overflow: hidden;
-            background: transparent;
-        }
-
-        /* Slot 1: Diatas Player (Memanggil pos-a / 320x50) */
-        .ad-top-box { height: 60px; }
-
-        /* Slot 2: Di dalam Container, Di bawah Player sebelum text (Memanggil pos-b / 300x250) */
-        .ad-middle-box { 
-            height: 260px; 
-            border-radius: 0px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Slot 3: Di paling bawah halaman, responsive mobile (Memanggil pos-c / 160x300) */
-        .ad-bottom-box { height: 310px; margin-top: 10px; }
-
-        /* Slot 4 BARU: Banner Besar 728x90 (Memanggil pos-d) */
-        .ad-banner-728 {
-            height: 100px;
-            margin-top: 10px;
-            max-width: 100%;
-        }
-        /* Penyesuaian agar iframe 728x90 aman saat dibuka di perangkat mobile kecil */
-        @media (max-width: 768px) {
-            .ad-banner-728 {
-                height: 200px; /* Ditambah tingginya karena flex-wrap di ads.html akan melipat kedua iklan ke bawah */
-            }
-        }
-    </style>
 </head>
 <body>
 
-    <div class="page-layout">
-        
-        <div class="ad-container-iframe ad-top-box">
-            <iframe src="ads.html#pos-a" class="ad-iframe" width="650" height="55" scrolling="no"></iframe>
-        </div>
-      <div class="ad-container-iframe ad-banner-728">
-            <iframe src="ads.html#pos-d" class="ad-iframe" width="100%" height="100%" scrolling="no"></iframe>
-        </div>
+<div class="container layout">
 
-        <div class="container">
-            
-            <div class="video-player" id="playerContainer">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop" alt="Video Placeholder" class="video-thumbnail" id="thumbnail">
-                
-                <div class="player-overlay" id="playerOverlay">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-
-                <div class="buffering-box" id="bufferingBox">
-                    <div class="spinner"></div>
-                    <div class="buffering-text">กำลังโหลดวิดีโอ... <span id="percentage">0%</span></div>
-                </div>
-
-                <div class="video-controls">
-                    <div class="controls-left">
-                        <i class="fas fa-play"></i>
-                        <i class="fas fa-step-forward"></i>
-                        <i class="fas fa-volume-up"></i>
-                        <span class="time-display">00:00 / 45:00</span>
-                    </div>
-                    <div class="controls-right">
-                        <i class="fas fa-closed-captioning"></i>
-                        <i class="fas fa-cog"></i>
-                        <i class="fas fa-expand"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ad-container-iframe ad-middle-box">
-                <iframe src="ads.html#pos-b" class="ad-iframe" width="610" height="255" scrolling="no"></iframe>
-            </div>
-
-            <div class="video-details">
-                <div class="badge-container">
-                    <span class="badge hot">กำลังมาแรง</span>
-                    <span class="badge hd">Ultra HD 1080P</span>
-                </div>
-                <h1 class="video-title">ละครย้อนหลัง ซีรี่ย์ยอดฮิต และหนังดังเอเชีย - (ตอนล่าสุด)</h1>
-                <div class="video-meta">
-                    <span><i class="fas fa-star rating-star"></i> 9.9 คะแนนสูงสุด</span>
-                    <span>•</span>
-                    <span>2026</span>
-                    <span>•</span>
-                    <span>มีคำบรรยายหลายภาษา</span>
-                </div>
-                <p class="video-description">
-                    รับชมละครไทยยอดฮิตและซีรี่ย์เรื่องดังที่เป็นกระแส ไม่ว่าจะเป็นแนวย้อนยุค แฟนตาซี โรแมนติก หรือดราม่าทันสมัย สตรีมมิ่งผ่านเซิร์ฟเวอร์ความเร็วสูงพร้อมซับไตเติลแปลทันที คลิกที่เครื่องเล่นวิดีโอเพื่อเริ่มต้นความบันเทิงและปลดล็อกการรับชมได้ทันที
-                </p>
-            </div>
-        </div>
-
-        <div class="ad-container-iframe ad-bottom-box">
-            <iframe src="ads.html#pos-c" class="ad-iframe" width="330" height="305" scrolling="no"></iframe>
-        </div>
-
-        <div class="ad-container-iframe ad-banner-728">
-            <iframe src="ads.html#pos-d" class="ad-iframe" width="100%" height="100%" scrolling="no"></iframe>
-        </div>
-
+<!-- LEFT ADS (Hanya Muncul Di Desktop) -->
+<div class="sidebar">
+    <div class="banner">
+        <script>
+        atOptions = {
+            'key':'e132c6412476f3cc77d11b3519cd21b9',
+            'format':'iframe',
+            'height':600,
+            'width':160
+        };
+        </script>
+        <script src="//buffcasualwhine.com/e132c6412476f3cc77d11b3519cd21b9/invoke.js"></script>
     </div>
+</div>
 
-    <script>
-        // CONFIGURATION TARGET REDIRECT URL
-        const TARGET_URL = "https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2"; 
-        const BUFFERING_DURATION = 4000; 
+<!-- MAIN -->
+<div class="main">
 
-        const playerContainer = document.getElementById('playerContainer');
-        const playerOverlay = document.getElementById('playerOverlay');
-        const bufferingBox = document.getElementById('bufferingBox');
-        const percentageText = document.getElementById('percentage');
+<!-- TOP BANNER -->
+<div class="banner">
+<script>
+atOptions = {
+    'key':'2d751854ce36e13fefddaa58f93251e2',
+    'format':'iframe',
+    'height':90,
+    'width':728
+};
+</script>
+<script src="//buffcasualwhine.com/2d751854ce36e13fefddaa58f93251e2/invoke.js"></script>
+</div>
 
-        playerContainer.addEventListener('click', function() {
-            playerOverlay.style.display = 'none';
-            bufferingBox.style.display = 'flex';
+<!-- HEADING & TEXT DESCRIPTOR (THAI LANGUAGE) -->
+<div class="captcha-header">
+    <h1>กรุณายืนยันตัวตน</h1>
+    <p>โปรดคลิกทำเครื่องหมายในช่องด้านล่างเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ และเข้าสู่หน้าเล่นวิดีโอ</p>
+</div>
 
-            let currentProgress = 0;
-            const stepIncrementTime = BUFFERING_DURATION / 100;
+<!-- GOOGLE RECAPTCHA CONTAINER -->
+<div class="captcha-wrapper">
+    <div class="recaptcha-box">
+        <div class="recaptcha-left">
+            <div class="checkbox-container">
+                <input type="checkbox" id="captchaCheck" class="real-checkbox" onclick="handleCaptchaClick(this)">
+                <div id="boxCustom" class="custom-checkbox"></div>
+                <div id="boxSpinner" class="captcha-spinner"></div>
+                <div id="boxCheckmark" class="checkmark"></div>
+            </div>
+            <div class="recaptcha-text">ฉันไม่ใช่โปรแกรมอัตโนมัติ</div>
+        </div>
+        <div class="recaptcha-right">
+            <div class="recaptcha-logo"></div>
+            <div class="recaptcha-brand-text">reCAPTCHA</div>
+            <div class="recaptcha-links">
+                <a href="#">ความเป็นส่วนตัว</a> - <a href="#">ข้อกำหนด</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const progressTimer = setInterval(() => {
-                currentProgress++;
-                percentageText.innerText = currentProgress + "%";
-                
-                if (currentProgress >= 100) {
-                    clearInterval(progressTimer);
-                    window.location.href = TARGET_URL;
-                }
-            }, stepIncrementTime);
-        });
-    </script>
+<!-- ADS MIDDLE -->
+<div class="banner">
+<script>
+atOptions = {
+    'key':'53541ca00eed825e8c431c12f7418ac0',
+    'format':'iframe',
+    'height':250,
+    'width':300
+};
+</script>
+<script src="//buffcasualwhine.com/53541ca00eed825e8c431c12f7418ac0/invoke.js"></script>
+</div>
+
+<!-- EXTRA ADS -->
+<div class="banner">
+<script>
+atOptions = {
+    'key':'ee6fbbaee01d7a12aeeb5d58f3126e1f',
+    'format':'iframe',
+    'height':60,
+    'width':468
+};
+</script>
+<script src="//buffcasualwhine.com/ee6fbbaee01d7a12aeeb5d58f3126e1f/invoke.js"></script>
+</div>
+
+</div>
+
+<!-- RIGHT ADS (Hanya Muncul Di Desktop) -->
+<div class="sidebar">
+    <div class="banner">
+        <script>
+        atOptions = {
+            'key':'328472b6f3804a37481a66024bd30649',
+            'format':'iframe',
+            'height':300,
+            'width':160
+        };
+        </script>
+        <script src="//buffcasualwhine.com/328472b6f3804a37481a66024bd30649/invoke.js"></script>
+    </div>
+</div>
+
+</div>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-ad">
+<script>
+atOptions = {
+    'key':'113942e911746c421f6b5497bf65a2c6',
+    'format':'iframe',
+    'height':50,
+    'width':320
+};
+</script>
+<script src="//buffcasualwhine.com/113942e911746c421f6b5497bf65a2c6/invoke.js"></script>
+</div>
+
+<script>
+function handleCaptchaClick(checkbox) {
+    checkbox.disabled = true;
+
+    const customBox = document.getElementById("boxCustom");
+    const spinner = document.getElementById("boxSpinner");
+    const checkmark = document.getElementById("boxCheckmark");
+
+    customBox.style.display = "none";
+    spinner.style.display = "block";
+
+    // จำลองการโหลด reCAPTCHA 1.5 วินาที
+    setTimeout(() => {
+        spinner.style.display = "none";
+        checkmark.style.display = "block";
+
+        // เปิดป็อปอันเดอร์โฆษณาของคุณเมื่อติ๊กถูกสำเร็จ
+        window.open("https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2","_blank");
+    }, 1500);
+}
+</script>
+
 </body>
 </html>
