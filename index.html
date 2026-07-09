@@ -7,7 +7,6 @@
 <title>Go-Series | ละครย้อนหลัง หนัง ซีรี่ย์ ซิทคอม</title>
 <meta name="description" content="Go-Series-ละครย้อนหลัง ชมละครย้อนหลัง ละครดัง ละครใหม่ ละครเก่า ละครไทย ครบทุกแนว ทั้งดราม่า โรแมนติก คอมเมดี้ และบู๊แอ็กชัน อัปเดตทุกวัน ที่นี่ที่เดียว">
 
-<!-- HISTATS -->
 <script>
 var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,5011173,4,0,0,0,00010000']);
@@ -25,12 +24,14 @@ body {
     font-family: Roboto, Arial, sans-serif;
     background:#000;
     color:#fff;
+    overflow-x: hidden; /* Mencegah scroll horizontal di mobile akibat iframe iklan besar */
 }
 
 .container {
     max-width:1000px;
     margin:auto;
     padding:10px;
+    box-sizing: border-box;
 }
 
 /* RESPONSIVE LAYOUT (MOBILE FIRST) */
@@ -39,17 +40,29 @@ body {
     display: none;
 }
 
+.main {
+    width: 100%;
+    padding-bottom: 70px; /* Jarak aman agar konten tidak tertutup iklan sticky bottom di mobile */
+    box-sizing: border-box;
+}
+
 /* DESKTOP LAYOUT (Hanya aktif di layar komputer/desktop minimal 1024px) */
 @media(min-width:1024px){
     .layout {display:flex; gap:15px;}
     .sidebar {display:block; width:160px;} /* Iklan samping muncul kembali di desktop */
-    .main {flex:1;}
+    .main {flex:1; padding-bottom: 0;}
 }
 
 /* BANNER */
 .banner {
     text-align:center;
     margin:12px 0;
+    max-width: 100%;
+    overflow-x: auto; /* Jika iframe iklan terlalu lebar di mobile, dia akan terwadahi dengan baik */
+}
+
+.banner iframe {
+    max-width: 100%;
 }
 
 /* STICKY MOBILE ADS */
@@ -220,7 +233,6 @@ body {
 
 <div class="container layout">
 
-<!-- LEFT ADS (Hanya Muncul Di Desktop) -->
 <div class="sidebar">
     <div class="banner">
         <script>
@@ -235,10 +247,8 @@ body {
     </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-<!-- TOP BANNER -->
 <div class="banner">
 <script>
 atOptions = {
@@ -251,12 +261,11 @@ atOptions = {
 <script src="//buffcasualwhine.com/2d751854ce36e13fefddaa58f93251e2/invoke.js"></script>
 </div>
 
-<!-- HEADING & TEXT DESCRIPTOR (THAI LANGUAGE) -->
 <div class="captcha-header">
     <h1>กรุณายืนยันตัวตน</h1>
     <p>โปรดคลิกทำเครื่องหมายในช่องด้านล่างเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ และเข้าสู่หน้าเล่นวิดีโอ</p>
 </div>
-<!-- EXTRA ADS -->
+
 <div class="banner">
 <script>
 atOptions = {
@@ -269,7 +278,6 @@ atOptions = {
 <script src="//buffcasualwhine.com/ee6fbbaee01d7a12aeeb5d58f3126e1f/invoke.js"></script>
 </div>
     
-<!-- GOOGLE RECAPTCHA CONTAINER -->
 <div class="captcha-wrapper">
     <div class="recaptcha-box">
         <div class="recaptcha-left">
@@ -291,7 +299,6 @@ atOptions = {
     </div>
 </div>
 
-<!-- ADS MIDDLE -->
 <div class="banner">
 <script>
 atOptions = {
@@ -306,7 +313,6 @@ atOptions = {
 
 </div>
 
-<!-- RIGHT ADS (Hanya Muncul Di Desktop) -->
 <div class="sidebar">
     <div class="banner">
         <script>
@@ -323,7 +329,6 @@ atOptions = {
 
 </div>
 
-<!-- STICKY MOBILE -->
 <div class="sticky-ad">
 <script>
 atOptions = {
@@ -357,7 +362,7 @@ function handleCaptchaClick(checkbox) {
         
         // 2. Mengalihkan tab utama saat ini ke halaman tujuan Anda
         window.location.href = "https://lakorndufree.site/";
-    }, 15000);
+    }, 1500); // Diperbaiki dari 15000 (15 detik) menjadi 1500 (1.5 detik sesuai komentar code Anda)
 }
 </script>
 
