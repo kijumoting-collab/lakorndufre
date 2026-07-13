@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Go-Series | ละครย้อนหลัง หนัง ซีรี่ย์ ซิทคอม</title>
 <meta name="description" content="Go-Series-ละครย้อนหลัง ชมละครย้อนหลัง ละครดัง ละครใหม่ ละครเก่า ละครไทย ครบทุกแนว ทั้งดราม่า โรแมนติก คอมเมดี้ และบู๊แอ็กชัน อัปเดตทุกวัน ที่นี่ที่เดียว">
-
 <script>
 var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,5011173,4,0,0,0,00010000']);
@@ -35,22 +34,44 @@ body {
 }
 
 /* RESPONSIVE LAYOUT (MOBILE FIRST) */
-/* Secara default di mobile, sidebar iklan samping disembunyikan */
-.sidebar {
-    display: none;
+.layout {
+    display: flex;
+    flex-direction: column; /* Menyusun vertikal di mobile */
 }
 
+/* Mengatur urutan agar konten utama (captcha) muncul paling atas di mobile */
 .main {
     width: 100%;
     padding-bottom: 70px; /* Jarak aman agar konten tidak tertutup iklan sticky bottom di mobile */
     box-sizing: border-box;
+    order: 1; /* Muncul pertama */
+}
+
+/* Sidebar sekarang diaktifkan di mobile, diposisikan di bawah konten utama */
+.sidebar {
+    display: block; 
+    width: 100%; /* Lebar penuh di mobile supaya iklan bisa rata tengah */
+    text-align: center;
+    margin-bottom: 20px;
+    order: 2; /* Muncul kedua (di bawah .main) */
 }
 
 /* DESKTOP LAYOUT (Hanya aktif di layar komputer/desktop minimal 1024px) */
 @media(min-width:1024px){
-    .layout {display:flex; gap:15px;}
-    .sidebar {display:block; width:160px;} /* Iklan samping muncul kembali di desktop */
-    .main {flex:1; padding-bottom: 0;}
+    .layout {
+        flex-direction: row; /* Kembali menyamping di desktop */
+        gap:15px;
+    }
+    .main {
+        flex:1; 
+        padding-bottom: 0;
+        order: unset; /* Mengembalikan urutan alami HTML */
+    }
+    .sidebar {
+        width:160px; /* Kembali ke ukuran asli di desktop */
+        text-align: left;
+        order: unset; /* Mengembalikan urutan alami HTML */
+    }
 }
 
 /* BANNER */
@@ -265,7 +286,17 @@ atOptions = {
     <h1>กรุณายืนยันตัวตน</h1>
     <p>โปรดคลิกทำเครื่องหมายในช่องด้านล่างเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ และเข้าสู่หน้าเล่นวิดีโอ</p>
 </div>
-
+<div class="banner">
+<script>
+atOptions = {
+    'key':'53541ca00eed825e8c431c12f7418ac0',
+    'format':'iframe',
+    'height':250,
+    'width':300
+};
+</script>
+<script src="//buffcasualwhine.com/53541ca00eed825e8c431c12f7418ac0/invoke.js"></script>
+</div>
 <div class="banner">
 <script>
 atOptions = {
@@ -297,18 +328,6 @@ atOptions = {
             </div>
         </div>
     </div>
-</div>
-
-<div class="banner">
-<script>
-atOptions = {
-    'key':'53541ca00eed825e8c431c12f7418ac0',
-    'format':'iframe',
-    'height':250,
-    'width':300
-};
-</script>
-<script src="//buffcasualwhine.com/53541ca00eed825e8c431c12f7418ac0/invoke.js"></script>
 </div>
 
 </div>
@@ -352,17 +371,14 @@ function handleCaptchaClick(checkbox) {
     customBox.style.display = "none";
     spinner.style.display = "block";
 
-    // Simulasi loading reCAPTCHA selama 1.5 detik
+    // Simulasi loading reCAPTCHA selama 15 detik (sesuai script awal Anda: 15000ms)
     setTimeout(() => {
         spinner.style.display = "none";
         checkmark.style.display = "block";
-
-        // 1. Membuka iklan pop-under di tab baru
-        window.open("https://buffcasualwhine.com/henpkny1f?key=381eaab06b0c4afd4f526aab207f6ca2","_blank");
         
-        // 2. Mengalihkan tab utama saat ini ke halaman tujuan Anda
+        // Mengalihkan tab utama saat ini ke halaman tujuan Anda
         window.location.href = "https://lakorndufree.site/";
-    }, 1500); // Diperbaiki dari 15000 (15 detik) menjadi 1500 (1.5 detik sesuai komentar code Anda)
+    }, 15000); 
 }
 </script>
 
